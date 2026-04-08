@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>My Slideshow</title>
+<style>
+  
+  /* Reset margin dan padding */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+  }
+
+  /* Slider container memenuhi seluruh layar */
+  .slider {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Slide list, menampilkan satu slide penuh */
+  .slides {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  /* Setiap slide menyesuaikan dengan ukuran layar */
+  .slide {
+    min-width: 100%;
+    height: 100%;
+    background-color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  /* Kontainer gambar agar gambar berada di tengah */
+  .img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%; /* Sesuaikan jika perlu */
+    width: 100%;
+  }
+
+  /* Gambar menyesuaikan dengan ukuran slide */
+  .slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  /* Navigasi di bagian bawah */
+  .bottom-navigation {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  /* Tombol navigasi */
+  .nav-button {
+    background-color: rgba(0,0,0,0.5);
+    border: none;
+    color: #fff;
+    padding: 15px 25px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 1em; /* gunakan kata "Next" dan "Previous" */
+    min-width: 80px;
+    text-align: center;
+  }
+
+  /* Teks dan judul */
+  h2, h3 {
+    font-size: 2em;
+    margin-top: 0.5em;
+    text-align: center;
+  }
+
+  p {
+    font-size: 1.2em;
+    line-height: 1.5;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+ 
+<div class="slider">
+  <div class="slides" id="slides">
+      <!-- Slide 1 -->
+      <div class="slide">
+        <h2>Happy Birthday!!!</h2>
+        <h1>About You, Thank You For Always Being There For Me</h1>
+        <div style="text-align:center;">Be Yourself & Love Yourself</div>
+      </div>  <!-- Slide 2 -->
+      <div class="slide">
+        
+        <h1>Haiii</br>This Is For You</h1>
+        <div style="text-align:center;">Rivani Nur Fadillah</div>
+      </div>
+    <!-- Slide 3 -->
+    <div class="slide">
+      <div class="img-container">
+        <img src="public/images/foto1.jpg" alt="Driving"/>
+      </div>
+      <p>If you're tired, take a break. But then get back up! I'm sure you can do it!</p>
+      <div style="text-align:center;">Hope You</div>
+    </div>
+    <!-- Slide 4 -->
+    <div class="slide">
+      <div class="img-container">
+        <img src="public/images/foto2.jpg" alt="Walking"/>
+      </div>
+      <p>You should never feel insecure or left behind, because you have a side that others don't.</p>
+      <div style="text-align:center;">My Favorite Person</div>
+    </div>
+    <!-- Slide 5 -->
+    <div class="slide">
+      <h2>Happy Birthday!!!</h2>
+      <p>Congratulations on becoming an adult, where you'll face even more challenges.<br/>Don't forget to thank yourself for surviving this far.<br/>I just want to say, if the world isn't on your side, I'll always be there for you. Don't hesitate to tell me, okay?<br/>It's okay to fall, but giving up is the one thing you should never do!<br/>If the world isn't kind to you, you must still be kind to yourself.<br/>May your wishes come true. I'm grateful for every moment we've shared, and I hope to create many more beautiful memories together. Among the thousands of stars in the sky, you alone shine the brightest in my heart.</p>
+      <div style="text-align:center;">Rivani Nur Fadillah</div>
+    </div>
+    <!-- Slide 6 -->
+    <div class="slide">
+      <h3>I hope you like it</h3>
+    </div>
+    <!-- Slide 7 -->
+    
+  </div>
+  <!-- Navigasi di bagian bawah -->
+  <div class="bottom-navigation">
+    <button id="prev" class="nav-button">Previous</button>
+    <button id="next" class="nav-button">Next</button>
+  </div>
+</div>
+
+<script>
+  const slides = document.getElementById('slides');
+  const totalSlides = slides.children.length;
+  let currentIndex = 0;
+
+  document.getElementById('prev').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateSlide();
+  });
+
+  document.getElementById('next').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlide();
+  });
+
+  function updateSlide() {
+    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
+</script>
+
+</body>
+</html>
